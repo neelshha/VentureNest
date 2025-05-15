@@ -1,0 +1,195 @@
+import { useState, useEffect } from 'react';
+import { Menu, X, Smartphone, Download, ChevronDown } from 'lucide-react';
+import NavLink from './NavLink';
+
+interface HeaderProps {
+  currentPage: string;
+  setCurrentPage: (page: string) => void;
+}
+
+const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPricingDropdownOpen, setIsPricingDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  return (
+    <header 
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-md' : 'bg-white'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div 
+            className="flex items-center cursor-pointer" 
+            onClick={() => setCurrentPage('home')}
+          >
+            <span className="font-raleway font-bold text-xl md:text-2xl text-gray-900">
+              Logo
+            </span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-8">
+              <NavLink 
+                isActive={currentPage === 'events'} 
+                onClick={() => setCurrentPage('events')}
+                className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+              >
+                Events
+              </NavLink>
+              <div className="relative group">
+                <NavLink 
+                  isActive={currentPage === 'pricing-startups' || currentPage === 'pricing-investors'} 
+                  onClick={() => {}}
+                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center"
+                >
+                  Pricing
+                  <ChevronDown className="h-4 w-4 ml-1" />
+                </NavLink>
+                <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="py-1">
+                    <button
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setCurrentPage('pricing-startups')}
+                    >
+                      For Startups
+                    </button>
+                    <button
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setCurrentPage('pricing-investors')}
+                    >
+                      For Investors
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <NavLink 
+                isActive={currentPage === 'contact'} 
+                onClick={() => setCurrentPage('contact')}
+                className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+              >
+                Contact Us
+              </NavLink>
+            </nav>
+
+            {/* Desktop Actions */}
+            <div className="flex items-center space-x-6">
+              <button 
+                onClick={() => setCurrentPage('mobile')}
+                className="relative p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group"
+                aria-label="Download Mobile App"
+              >
+                <Smartphone className="h-6 w-6 text-gray-700" />
+                <Download className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-3 w-3 text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              </button>
+              <button 
+                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 font-medium"
+                onClick={() => setCurrentPage('login')}
+              >
+                Log In
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center md:hidden">
+            <button
+              onClick={toggleMobileMenu}
+              className="p-2 rounded-md hover:bg-gray-100 transition-colors duration-200"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6 text-gray-700" />
+              ) : (
+                <Menu className="h-6 w-6 text-gray-700" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200">
+          <nav className="px-2 pt-2 pb-3 space-y-1">
+            <a 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
+              onClick={() => {
+                setCurrentPage('events');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Events
+            </a>
+            <div className="space-y-1">
+              <button
+                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
+                onClick={() => setIsPricingDropdownOpen(!isPricingDropdownOpen)}
+              >
+                Pricing
+              </button>
+              {isPricingDropdownOpen && (
+                <div className="pl-4 space-y-1">
+                  <button
+                    className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
+                    onClick={() => {
+                      setCurrentPage('pricing-startups');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    For Startups
+                  </button>
+                  <button
+                    className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
+                    onClick={() => {
+                      setCurrentPage('pricing-investors');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    For Investors
+                  </button>
+                </div>
+              )}
+            </div>
+            <a 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
+              onClick={() => {
+                setCurrentPage('contact');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Contact Us
+            </a>
+            <div className="pt-2 border-t border-gray-200">
+              <button 
+                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-700 hover:bg-gray-50 transition-colors duration-200"
+                onClick={() => {
+                  setCurrentPage('login');
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                Log In
+              </button>
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
