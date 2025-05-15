@@ -1,5 +1,6 @@
 import { Check, X, HelpCircle } from 'lucide-react';
 import { formatCurrency } from '../utils/currency';
+import { Link } from 'react-router-dom';
 
 const PricingStartupsPage = () => {
   const pricingTiers = [
@@ -27,7 +28,7 @@ const PricingStartupsPage = () => {
         'Everything in Basic',
         'Fundraising Aid',
         '3 Dms to Investors',
-        '1 Mentorship Call',
+        '3 Mentor Recorded Masterclasses',
         'Basic Pitch Deck Templates',
         'Advanced Profile Set Up',
         'Basic Due Diligence Tools',
@@ -50,7 +51,7 @@ const PricingStartupsPage = () => {
         'Warm Intros via Platform',
         'AdvancedDue Diligence Toolkit',
         'Smart Data Room Hosting',
-        '5 Mentorship Calls',
+        '5 Mentor Recorded Masterclasses',
        ' Advanced Courses on Fundraising,Valuation and More',
       ],
       notIncluded: [],
@@ -64,7 +65,7 @@ const PricingStartupsPage = () => {
       features: [
         '15 Dms to Investors',
         'Fundraising Aid',
-        '8 Mentorship Calls',
+        '8 Mentor Recorded Masterclasses',
         'Dedicated Success Manager',
         'Custom Integrations',
         'Advanced Analytics & Reporting',
@@ -148,15 +149,13 @@ const PricingStartupsPage = () => {
                 </div>
               </div>
               
-              <button
-                className={`w-full py-3 px-6 rounded-lg mb-6 ${
-                  tier.popular
-                    ? 'bg-accent text-white hover:bg-accent/90'
-                    : 'bg-secondary text-gray-900 hover:bg-secondary/80'
-                } transition-colors font-medium`}
-              >
+              <Link to="/PricingForm1" className={`w-full py-3 px-6 rounded-lg mb-6 ${
+                tier.popular
+                  ? 'bg-accent text-white hover:bg-accent/90'
+                  : 'bg-secondary text-gray-900 hover:bg-secondary/80'
+              } transition-colors font-medium block text-center`}>
                 {tier.cta}
-              </button>
+              </Link>
               
               <div className="space-y-4">
                 <p className="text-sm font-medium">Features included:</p>
