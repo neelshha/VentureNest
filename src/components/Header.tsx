@@ -36,8 +36,13 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
             className="flex items-center cursor-pointer" 
             onClick={() => setCurrentPage('home')}
           >
-            <span className="font-raleway font-bold text-xl md:text-2xl text-gray-900">
-              Logo
+            <img
+              src="/logo.png"
+              alt="VentureNest Logo"
+              className="h-8 w-auto"
+            />
+            <span className="font-raleway font-bold text-xl md:text-2xl text-[#882727] ml-2">
+              VentureNest
             </span>
           </div>
 
@@ -97,7 +102,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
                 <Download className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-3 w-3 text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               </button>
               <button 
-                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 font-medium"
+                className="px-4 py-2 rounded-md bg-accent text-white hover:bg-accent/90 transition-colors duration-200 font-medium"
                 onClick={() => setCurrentPage('login')}
               >
                 Log In
@@ -176,7 +181,7 @@ const Header = ({ currentPage, setCurrentPage }: HeaderProps) => {
             </a>
             <div className="pt-2 border-t border-gray-200">
               <button 
-                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-700 hover:bg-gray-50 transition-colors duration-200"
+                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-accent hover:text-accent/90 hover:bg-gray-50 transition-colors duration-200"
                 onClick={() => {
                   setCurrentPage('login');
                   setIsMobileMenuOpen(false);

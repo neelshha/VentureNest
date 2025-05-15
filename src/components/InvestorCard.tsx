@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Briefcase, Globe, TrendingUp, MessageCircle, Heart } from 'lucide-react';
+import { formatCurrency } from '../utils/currency';
 
 interface InvestmentStage {
   name: string;
@@ -14,8 +15,8 @@ interface InvestorCardProps {
   avatar: string;
   location: string;
   investmentFocus: string[];
-  minInvestment: string;
-  maxInvestment: string;
+  minInvestment: number;
+  maxInvestment: number;
   investmentStages: InvestmentStage[];
   bio: string;
   portfolioSize: number;
@@ -88,7 +89,7 @@ const InvestorCard = ({
       <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
         <div className="flex flex-col">
           <span className="text-text-secondary">Investment</span>
-          <span className="font-medium">{minInvestment} - {maxInvestment}</span>
+          <span className="font-medium">{formatCurrency(minInvestment)} - {formatCurrency(maxInvestment)}</span>
         </div>
         <div className="flex flex-col">
           <span className="text-text-secondary">Portfolio</span>

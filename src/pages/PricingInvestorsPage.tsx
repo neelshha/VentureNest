@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Check, X, HelpCircle } from 'lucide-react';
+import { formatCurrency } from '../utils/currency';
 
 const PricingInvestorsPage = () => {
   const pricingTiers = [
@@ -127,7 +128,7 @@ const PricingInvestorsPage = () => {
               
               <div className="mb-6">
                 <div className="flex items-baseline">
-                  <span className="text-4xl font-bold">${tier.price}</span>
+                  <span className="text-4xl font-bold">{formatCurrency(tier.price)}</span>
                   <span className="text-text-secondary ml-2">/month</span>
                 </div>
               </div>

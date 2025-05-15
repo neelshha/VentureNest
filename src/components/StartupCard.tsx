@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Users, TrendingUp, Award, Heart, Share2 } from 'lucide-react';
+import { formatCurrency } from '../utils/currency';
 
 interface StartupCardProps {
   id: string;
@@ -7,9 +8,9 @@ interface StartupCardProps {
   logo: string;
   industry: string;
   description: string;
-  funding: string;
+  funding: number;
   team: number;
-  founded: number;
+  founded: string;
   location: string;
   stage: string;
   traction: string;
@@ -58,7 +59,7 @@ const StartupCard = ({
       <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
         <div className="flex flex-col">
           <span className="text-text-secondary">Funding</span>
-          <span className="font-medium">{funding}</span>
+          <span className="font-medium">{formatCurrency(funding)}</span>
         </div>
         <div className="flex flex-col">
           <span className="text-text-secondary">Stage</span>

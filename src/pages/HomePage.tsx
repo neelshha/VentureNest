@@ -3,6 +3,7 @@ import StartupCard from '../components/StartupCard';
 import InvestorCard from '../components/InvestorCard';
 import FeedPost from '../components/FeedPost';
 import EventCard from '../components/EventCard';
+import { formatCompactCurrency } from '../utils/currency';
 
 interface HomePageProps {
   setCurrentPage: (page: string) => void;
@@ -17,9 +18,9 @@ const HomePage = ({ setCurrentPage }: HomePageProps) => {
       logo: 'https://images.pexels.com/photos/5212320/pexels-photo-5212320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       industry: 'CleanTech',
       description: 'Pioneering sustainable energy solutions through innovative solar technology, reducing carbon footprints for businesses worldwide.',
-      funding: '$2.5M',
+      funding: 2500000,
       team: 18,
-      founded: 2020,
+      founded: '2020',
       location: 'San Francisco',
       stage: 'Seed',
       traction: '32% MoM growth',
@@ -31,9 +32,9 @@ const HomePage = ({ setCurrentPage }: HomePageProps) => {
       logo: 'https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       industry: 'HealthTech',
       description: 'Leveraging artificial intelligence to revolutionize early disease detection and improving healthcare outcomes globally.',
-      funding: '$4.7M',
+      funding: 4700000,
       team: 24,
-      founded: 2019,
+      founded: '2019',
       location: 'Boston',
       stage: 'Series A',
       traction: '15k+ users',
@@ -50,8 +51,8 @@ const HomePage = ({ setCurrentPage }: HomePageProps) => {
       avatar: 'https://images.pexels.com/photos/2218786/pexels-photo-2218786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       location: 'New York',
       investmentFocus: ['AI/ML', 'FinTech', 'SaaS'],
-      minInvestment: '$250K',
-      maxInvestment: '$2M',
+      minInvestment: 250000,
+      maxInvestment: 2000000,
       investmentStages: [
         { name: 'Pre-Seed', color: 'accent' },
         { name: 'Seed', color: 'accent' },
@@ -186,7 +187,7 @@ const HomePage = ({ setCurrentPage }: HomePageProps) => {
                   <p className="text-text-secondary mb-4">AI and machine learning startups saw a 45% increase in funding during Q1 2025.</p>
                   <div className="flex justify-between">
                     <div className="flex flex-col">
-                      <span className="text-2xl font-bold text-accent">$18.7B</span>
+                      <span className="text-2xl font-bold text-accent">{formatCompactCurrency(18.7)}</span>
                       <span className="text-sm text-text-secondary">Total VC Funding</span>
                     </div>
                     <div className="flex flex-col">
@@ -295,7 +296,7 @@ const HomePage = ({ setCurrentPage }: HomePageProps) => {
               <span className="text-text-secondary">Investors</span>
             </div>
             <div className="text-center">
-              <span className="block text-4xl font-bold text-accent mb-2">$145M+</span>
+              <span className="block text-4xl font-bold text-accent mb-2">{formatCompactCurrency(145)}</span>
               <span className="text-text-secondary">Funding Raised</span>
             </div>
             <div className="text-center">
